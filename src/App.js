@@ -58,7 +58,7 @@ class App extends Component {
 
     render() {
         return(
-            <div>
+            <div className="parentFont">
                 <span className='title'>My Transactions</span>
                 <Filter
                     transactionTypes={this.getAllTransactionTypes()}
