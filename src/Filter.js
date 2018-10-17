@@ -16,13 +16,25 @@ class Filter extends Component {
         const name = e.target.name;
         if(_.indexOf(this.props.transactionTypes, name) > -1){
             let prevSelected = this.state.selectedTransactionTypes;
-            prevSelected.push(name);
+            if(e.target.checked){
+                prevSelected.push(name);
+            }
+            else if(!e.target.checked){
+                const index = _.indexOf(prevSelected, name);
+                prevSelected.splice(index, 1);
+            }
             this.setState({selectedTransactionTypes: prevSelected});
         }
 
         if(_.indexOf(this.props.accountNames, name) > -1){
             let prevSelected = this.state.selectedAccountNames;
-            prevSelected.push(name);
+            if(e.target.checked){
+                prevSelected.push(name);
+            }
+            else if(!e.target.checked){
+                const index = _.indexOf(prevSelected, name);
+                prevSelected.splice(index, 1);
+            }
             this.setState({selectedAccountNames: prevSelected});
         }
 
@@ -36,7 +48,6 @@ class Filter extends Component {
                 list.push(
                     <div>
                         < input
-                            className="checkbox"
                             type = "checkbox"
                             name={type}
                             onChange = {this.filterList.bind(this)}
@@ -49,28 +60,37 @@ class Filter extends Component {
             return list;
         }
 
-        const transactionTypes = makeTransactionTypesList();
-
-        console.log(transactionTypes)
-
-        const accountNames = _.forEach(this.props.accountNames, type => {
-            return (<label>
-                    <input
-                    name={type}
-                    type="checkbox"
-                    onChange={this.filterList.bind(this)} />
-                    </label>)
-        });
+        const makeAccountNamesList = () => {
+            const list = [];
+            _.forEach(this.props.accountNames, type => {
+                list.push(
+                    <div>
+                        < input
+                            type = "checkbox"
+                            name={type}
+                            onChange = {this.filterList.bind(this)}
+                        />
+                        <span>{type}</span>
+                    </div>
+                )
+            });
+            return list;
+        }
 
         return(
             <div>
-                <ul>
-                    {transactionTypes}
-                </ul>
-
-                <ul>
-                    {accountNames}
-                </ul>
+                <div>
+                    <span>Account Name</span>
+                    <ul>
+                        {makeAccountNamesList()}
+                    </ul>
+                </div>
+                <div>
+                    <span>Transaction Type</span>
+                    <ul>
+                        {makeTransactionTypesList()}
+                    </ul>
+                </div>
             </div>
         )
     }

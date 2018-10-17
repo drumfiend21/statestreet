@@ -30,27 +30,41 @@ class App extends Component {
     }
 
     filterList = (transactionTypes, accountNames) => {
-        const filtered = _.filter(data.transactions, o => {
-            return _.indexOf(transactionTypes, o.transactionType) > -1 || _.indexOf(accountNames, o.accountName) > -1;
-        });
-        this.setState({ data: filtered })
+        //if no filters, show all data
+        if(!transactionTypes.length && !accountNames.length){
+            this.setState({data: data.transactions});
+        }
+        //ordered filtering
+        else {
+            let filtered = [];
+            //filter by accountNames first
+            if(accountNames.length){
+                filtered = _.filter(data.transactions, o => {
+                    return _.indexOf(accountNames, o.accountName) > -1;
+                });
+            }
+            if(!filtered.length){
+               filtered = data.transactions;
+            }
+            //then filter by transaction types
+            if(transactionTypes.length) {
+                filtered = _.filter(filtered, o => {
+                    return _.indexOf(transactionTypes, o.transactionType) > -1;
+                });
+            }
+            this.setState({data: filtered})
+        }
     }
-
-    // filterListByAccountName = (accountName) => {
-    //     this.setState({ data: _.filter(data.transactions, o => o.accountName === accountName) })
-    // }
 
     render() {
         return(
             <div>
                 <span className='title'>My Transactions</span>
-
                 <Filter
                     transactionTypes={this.getAllTransactionTypes()}
                     accountNames={this.getAllAccountNames()}
                     filterList={this.filterList}
                 />
-
                 <Table
                     data={this.state.data}
                 />
