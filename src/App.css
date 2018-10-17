@@ -22,6 +22,23 @@
   color: #61dafb;
 }
 
+.reactTable {
+  width: 75%;
+  float: right;
+  display: block;
+}
+
+.title {
+  font-size: 24px;
+  display: block;
+  float: left;
+}
+
+.checkbox {
+  display: block;
+  margin: 5px 0 5px 0;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
