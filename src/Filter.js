@@ -12,7 +12,7 @@ class Filter extends Component {
         }
     }
 
-    filterList = (e) => {
+    filterTransactions = (e) => {
         const name = e.target.name;
         if(_.indexOf(this.props.transactionTypes, name) > -1){
             let prevSelected = this.state.selectedTransactionTypes;
@@ -38,7 +38,7 @@ class Filter extends Component {
             this.setState({selectedAccountNames: prevSelected});
         }
 
-        this.props.filterList(this.state.selectedTransactionTypes, this.state.selectedAccountNames);
+        this.props.filterTransactions(this.state.selectedTransactionTypes, this.state.selectedAccountNames);
     }
 
     render() {
@@ -50,7 +50,7 @@ class Filter extends Component {
                         < input
                             type = "checkbox"
                             name={type}
-                            onChange = {this.filterList.bind(this)}
+                            onChange = {this.filterTransactions.bind(this)}
                         />
                         <span>{type}</span>
 
@@ -68,7 +68,7 @@ class Filter extends Component {
                         < input
                             type = "checkbox"
                             name={type}
-                            onChange = {this.filterList.bind(this)}
+                            onChange = {this.filterTransactions.bind(this)}
                         />
                         <span>{type}</span>
                     </div>

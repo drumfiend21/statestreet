@@ -18,7 +18,7 @@ class App extends Component {
     }
 
     clearDetailView = () => {
-        this.setState({detailTransaction: null})
+        this.setState({detailTransaction: null, data: data.transactions})
     }
 
     setDetailView = (transaction) => {
@@ -39,7 +39,7 @@ class App extends Component {
         return accountNames;
     }
 
-    filterList = (transactionTypes, accountNames) => {
+    filterTransactions = (transactionTypes, accountNames) => {
         //if no filters, show all data
         if(!transactionTypes.length && !accountNames.length){
             this.setState({data: data.transactions});
@@ -85,7 +85,7 @@ class App extends Component {
                     <Filter
                         transactionTypes={this.getAllTransactionTypes()}
                         accountNames={this.getAllAccountNames()}
-                        filterList={this.filterList}
+                        filterTransactions={this.filterTransactions}
                     />
                     <Table
                         data={this.state.data}
