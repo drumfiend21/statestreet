@@ -71,6 +71,7 @@ class App extends Component {
         if(this.state.detailTransaction){
             return (
                 <Detail
+                    classNAme='parentFont'
                     transaction={this.state.detailTransaction}
                     clearDetailView={this.clearDetailView}
                 />
@@ -80,7 +81,7 @@ class App extends Component {
 
         else {
             return (
-                <div className="parentFont">
+                <div className='parentFont'>
                     <span className='title'>My Transactions</span>
                     <Filter
                         transactionTypes={this.getAllTransactionTypes()}
