@@ -31,6 +31,17 @@
 .title {
   font-size: 24px;
   display: block;
+}
+
+.filterBlock {
+  /*display: block;*/
+  /*float: left;*/
+  background-color: lightgrey;
+}
+
+.filterParent {
+  width: 25%;
+  display: block;
   float: left;
 }
 
