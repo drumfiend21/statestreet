@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Table from './Table.js';
 import Filter from './Filter.js';
+import Detail from './Detail.js';
 import data from './data.json';
 import _ from 'lodash';
 
@@ -12,7 +13,16 @@ class App extends Component {
         super(props);
         this.state = {
             data: data.transactions,
+            detailTransaction: null,
         }
+    }
+
+    clearDetailView = () => {
+        this.setState({detailTransaction: null})
+    }
+
+    setDetailView = (transaction) => {
+        this.setState({detailTransaction: transaction});
     }
 
     getAllTransactionTypes = () => {
@@ -57,19 +67,34 @@ class App extends Component {
     }
 
     render() {
-        return(
-            <div className="parentFont">
-                <span className='title'>My Transactions</span>
-                <Filter
-                    transactionTypes={this.getAllTransactionTypes()}
-                    accountNames={this.getAllAccountNames()}
-                    filterList={this.filterList}
+
+        if(this.state.detailTransaction){
+            return (
+                <Detail
+                    transaction={this.state.detailTransaction}
+                    clearDetailView={this.clearDetailView}
                 />
-                <Table
-                    data={this.state.data}
-                />
-            </div>
-        )
+            )
+
+        }
+
+        else {
+            return (
+                <div className="parentFont">
+                    <span className='title'>My Transactions</span>
+                    <Filter
+                        transactionTypes={this.getAllTransactionTypes()}
+                        accountNames={this.getAllAccountNames()}
+                        filterList={this.filterList}
+                    />
+                    <Table
+                        data={this.state.data}
+                        setDetailView={this.setDetailView}
+                    />
+                </div>
+            )
+        }
+
     }
 }
 

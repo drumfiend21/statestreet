@@ -11,14 +11,16 @@ class Table extends Component {
         this.state = {
             data: data.transactions,
         }
-    }
-
-    render() {
-        console.log(this.state.data)
-
-        const columns = [{
+        this.columns = [{
             Header: 'Account No.',
-            accessor: 'account' // String-based value accessors!
+            accessor: 'account', // String-based value accessors!
+            getProps: (state, rowInfo, column) => {
+                return {
+                    style: {
+                        'text-decoration': 'underline'
+                    }
+                };
+            }
         }, {
             Header: 'Account Name',
             accessor: 'accountName',
@@ -32,12 +34,29 @@ class Table extends Component {
             Header: 'Transaction Type',
             accessor: 'transactionType'
         }];
+    }
+
+    onRowClick = (state, rowInfo, column, instance) => {
+        const that = this;
+        return {
+            onClick: (e, handleOriginal) => {
+
+                console.log("It was in this row:", rowInfo.original);
+                that.props.setDetailView(rowInfo.original);
+
+            }
+        };
+    }
+
+    render() {
+        console.log(this.state.data)
 
         return(
             <ReactTable
                 className='reactTable'
                 data={this.props.data}
-                columns={columns}
+                columns={this.columns}
+                getTdProps={this.onRowClick}
             />
         )
     }
