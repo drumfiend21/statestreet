@@ -25,7 +25,7 @@ class Detail extends Component {
                 <b>Account Name:</b><span>{tx.accountName}</span>
                 <b>Currency Code:</b><span>{tx.currencyCode}</span>
                 <b>Amount:</b><span>{tx.amount}</span>
-                <b>Transaction Type:</b><span>{tx.account}</span>
+                <b>Transaction Type:</b><span>{tx.transactionType}</span>
             </div>
         )
     }
