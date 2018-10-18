@@ -80,13 +80,13 @@ class Filter extends Component {
         return(
             <div className="filterParent">
                 <div className='filterBlock'>
-                    <span>Account Name</span>
+                    <b>Account Name</b>
                     <ul>
                         {makeAccountNamesList()}
                     </ul>
                 </div>
                 <div className='filterBlock'>
-                    <span>Transaction Type</span>
+                    <b>Transaction Type</b>
                     <ul>
                         {makeTransactionTypesList()}
                     </ul>

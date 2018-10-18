@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactTable from "react-table";
 import 'react-table/react-table.css'
 import data from './data.json';
-
+import { withRouter } from 'react-router-dom'
 
 class Table extends Component {
 
@@ -36,21 +36,15 @@ class Table extends Component {
         }];
     }
 
-    onRowClick = (state, rowInfo, column, instance) => {
-        const that = this;
+    onRowClick = (state, rowInfo) => {
         return {
-            onClick: (e, handleOriginal) => {
-
-                console.log("It was in this row:", rowInfo.original);
-                that.props.setDetailView(rowInfo.original);
-
+            onClick: (e) => {
+                this.props.history.push(`/detail/${rowInfo.original.account}`)
             }
         };
     }
 
     render() {
-        console.log(this.state.data)
-
         return(
             <ReactTable
                 className='reactTable'
@@ -62,4 +56,4 @@ class Table extends Component {
     }
 }
 
-export default Table;
+export default withRouter(Table);

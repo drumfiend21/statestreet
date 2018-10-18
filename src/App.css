@@ -3,10 +3,9 @@
   src: url(https://fonts.googleapis.com/css?family=Roboto:300,500) format("truetype");
 }
 
-p.parentFont, span.parentFont {
+.parentFont h1, .parentFont b, .parentFont p, .parentFont span, .parentFont .rt-table {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
-  font-weight: 500;
 }
 
 .App {
@@ -33,6 +32,11 @@ p.parentFont, span.parentFont {
   color: #61dafb;
 }
 
+.main {
+  padding-right: 10%;
+  padding-left: 10%;
+}
+
 .reactTable {
   width: 75%;
   float: right;
@@ -41,27 +45,32 @@ p.parentFont, span.parentFont {
 
 .title {
   font-size: 24px;
+  font-weight: 500;
   display: block;
 }
 
 .filterBlock {
-  /*display: block;*/
-  /*float: left;*/
   background-color: lightgrey;
+}
+
+.filterBlock b {
+  font-weight: 500;
 }
 
 .filterParent {
   width: 25%;
+  padding: 0 5% 0 0;
   display: block;
   float: left;
 }
 
 .detailView {
-  margin-left: 25%;
+  padding: 0 25% 0 25%;
 }
 
 .detailView b{
-  display:block
+  display:block;
+  font-weight: 500;
 }
 
 @keyframes App-logo-spin {
